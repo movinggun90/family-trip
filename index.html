@@ -1,67 +1,135 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>우리 가족 첫 일본여행 ♥ v5</title><style>
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;margin:0;background:#f7f4ef;color:#292622;line-height:1.65}.wrap{max-width:1000px;margin:auto;padding:18px}.hero,.card,details{background:#fff;border-radius:20px;padding:22px;margin:16px 0;box-shadow:0 3px 14px #0000000a}.hero{background:linear-gradient(135deg,#fff0e5,#eaf4ee)}h1{margin:0;font-size:30px}h2{margin-top:0}h3{margin:22px 0 8px;color:#735035}summary{cursor:pointer;font-size:21px;font-weight:800;list-style:none}summary::-webkit-details-marker{display:none}summary:after{content:"＋";float:right;color:#9a6840}details[open] summary:after{content:"－"}details[open] summary{margin-bottom:16px}.route,.box{background:#f8f2ea;border-radius:14px;padding:15px;margin:14px 0}.route span{display:block;padding:3px}.arrow{color:#9a6840}.item{padding:13px 0;border-bottom:1px solid #eee}.item:last-child{border:0}.link{display:inline-block;background:#f5eee5;padding:8px 11px;border-radius:10px;margin:5px 3px 0 0;color:#704a2d;font-weight:700;text-decoration:none}.tag{display:inline-block;background:#eee7dc;padding:2px 8px;border-radius:99px;font-size:12px;margin-right:4px}.meal{border-left:4px solid #d7b48a;padding:12px 14px;margin:10px 0;background:#fcfaf7;border-radius:8px}.small{font-size:13px;color:#6c625b}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #eee;text-align:left}@media(max-width:600px){.wrap{padding:10px}.hero,.card,details{padding:16px}h1{font-size:25px}summary{font-size:19px}}
-</style></head><body><div class="wrap">
-<section class="hero"><h1>🇯🇵 우리 가족 첫 일본여행 ♥</h1><p><b>후쿠오카 · 유후인 · 벳푸 | 2026.10.05 ~ 10.09 | 4박 5일</b></p><p>👨‍👩‍👦 부부 + 5살 아이 · 🦁 사파리 · ♨️ 료칸 · 🚆 대중교통 중심</p></section>
-<section class="card"><h2>✈️ 항공 일정</h2><table><tr><th>항공사</th><th>구간</th><th>시간</th><th>비용</th></tr><tr><td>진에어</td><td>인천 → 후쿠오카</td><td>15:35 → 17:00</td><td>미입력</td></tr><tr><td>진에어</td><td>후쿠오카 → 인천</td><td>18:00 → 19:45</td><td>미입력</td></tr></table></section>
-<section class="card"><h2>🗺️ 전체 루트</h2><p><b>인천 → 후쿠오카 → 유후인 → 아프리칸 사파리 → 벳푸 → 후쿠오카 → 인천</b></p><p class="small">숙소 확정 후 각 숙소를 출발·도착 거점으로 업데이트</p></section>
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>우리 가족 첫 일본여행 ♥</title>
+<style>
+:root{--bg:#f4efe7;--card:#fffdf9;--ink:#2f2a25;--muted:#786e65;--accent:#9b6b43;--line:#eadfd3;--green:#6e8b74}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+.wrap{max-width:920px;margin:auto;padding:18px 14px 50px}.hero,.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;margin-bottom:14px}
+h1{margin:0 0 8px;font-size:clamp(28px,6vw,44px)}h2{margin:0 0 14px}.muted,.small{color:var(--muted)}.small{font-size:13px;line-height:1.5}
+.chips,.tabs,.route{display:flex;gap:8px;flex-wrap:wrap}.chip,.route span{background:#f3e9df;border-radius:999px;padding:7px 10px;font-size:13px;font-weight:700}
+.tabs{overflow-x:auto;flex-wrap:nowrap}.tab{border:1px solid var(--line);background:#f8f3ed;padding:11px 14px;border-radius:13px;font-weight:800;white-space:nowrap}.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.plan{display:none}.plan.active{display:block}.planhead{background:#fbf3e9;border-radius:15px;padding:15px;margin:14px 0}.day{border:1px solid var(--line);border-radius:15px;margin:10px 0;background:#fff;overflow:hidden}
+.day summary{padding:15px;font-weight:800;cursor:pointer}.inside{padding:0 15px 15px}.timeline{border-left:2px solid #ddc8b4;padding-left:15px}.timeline p{line-height:1.5}.time{font-weight:800;color:#875e3f}
+.note{background:#fff4cf;padding:12px;border-radius:12px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.mini,.checkgroup{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}.mini h3,.checkgroup h3{margin:0 0 8px}.mini p{font-size:14px;color:var(--muted);line-height:1.5}
+.placeholder{border:2px dashed #d8c5b4;border-radius:15px;padding:24px;text-align:center;color:var(--muted)}.check{display:flex;gap:8px;padding:6px 0;line-height:1.4}.check input{width:18px;height:18px;accent-color:var(--green)}
+.progress{height:10px;background:#eee6dc;border-radius:999px;overflow:hidden}.progress>div{height:100%;width:0;background:var(--green)}table{width:100%;border-collapse:collapse}th,td{padding:9px 7px;border-bottom:1px solid var(--line);text-align:left;font-size:14px}
+</style>
+</head>
+<body><div class="wrap">
+<section class="hero">
+<h1>🇯🇵 우리 가족 첫 일본여행 ♥</h1>
+<p class="muted">후쿠오카 · 유후인 · 벳푸 / 가족 3명 / 2026.10.05 ~ 10.09 예정</p>
+<div class="chips"><span class="chip">👨‍👩‍👦 5살 아이</span><span class="chip">♨️ 전통 료칸</span><span class="chip">🦁 아프리칸 사파리</span><span class="chip">🚆 대중교통 우선</span></div>
+</section>
 
-<details><summary>DAY 1 · 10/5 (월) ✈️ 후쿠오카 도착</summary><div class="route">🛬 후쿠오카 공항 → 🚌/🚕 → 🏨 하카타 숙소 → 🍽️ 저녁 → 🌃 가벼운 산책</div>
-<h3>🏨 숙소 추천 TOP 3+</h3>
-<div class="item"><b>🥇 HOTEL FORZA HAKATA Chikushi-Guchi I</b> <span class="tag">역 1분</span><span class="tag">교통 최강</span><br>첫날 늦은 도착과 다음날 유후인 이동을 생각하면 가장 실용적.<br><a class="link" href="https://www.hotelforza.jp/hakata/en/" target="_blank">공식 사이트</a></div>
-<div class="item"><b>🥈 Mitsui Garden Hotel Fukuoka Gion</b> <span class="tag">대욕장</span><span class="tag">하카타 감성</span><br>현대적인 마치야 디자인과 하카타 접근성의 균형.<br><a class="link" href="https://www.gardenhotels.co.jp/fukuoka-gion/eng/" target="_blank">공식 사이트</a></div>
-<div class="item"><b>🥉 Hotel Nikko Fukuoka</b> <span class="tag">고급</span><span class="tag">가족</span><br>역세권에서 조금 더 여유로운 호텔급 숙박을 원할 때.<br><a class="link" href="https://www.hotelnikko-fukuoka.com/" target="_blank">공식 사이트</a></div>
-<div class="item"><b>④ The Blossom Hakata Premier</b> <span class="tag">신축급</span><span class="tag">분위기</span><br>첫날 숙소 자체의 만족도를 높이고 싶을 때 후보.<br><a class="link" href="https://www.jrk-hotels.co.jp/Hakata/en/" target="_blank">공식 사이트</a></div>
-<h3>🍴 식사 리스트</h3>
-<div class="meal"><b>☀️ 아침</b> — 기내/공항 이동일이라 별도 추천 없음.</div>
-<div class="meal"><b>🌤️ 점심</b> — 비행 전 공항 식사 또는 기내 간식.</div>
-<div class="meal"><b>🌙 저녁</b><br>① 하카타역 식당가: 아이 컨디션 우선, 우동·돈카츠·스시 선택 폭 넓음.<br>② 이치란 본사총본점: 하카타 라멘 경험용(대기 가능성).<br>③ 가족 친화 식당을 숙소 기준으로 최종 선택.<br><a class="link" href="https://www.google.com/maps/search/?api=1&query=restaurants+near+Hakata+Station+Fukuoka" target="_blank">📍 DAY 1 식당 리스트 지도</a></div>
-</details>
+<section class="card">
+<h2>✈️ 항공편 후보</h2>
+<table>
+<tr><th>구간</th><th>예정</th><th>비고</th></tr>
+<tr><td>인천 → 후쿠오카</td><td>10/5 15:35 → 17:00</td><td>진에어 / 티켓팅 전</td></tr>
+<tr><td>후쿠오카 → 인천</td><td>10/9 18:00 → 19:45</td><td>진에어 / 티켓팅 전</td></tr>
+</table>
+</section>
 
-<details><summary>DAY 2 · 10/6 (화) 🚆 유후인 → 🏯 료칸</summary><div class="route">🏨 하카타 숙소 → 🚆 하카타역 → 🚆 유후인역 → 🍡 유노츠보 거리 → 🌿 긴린코 → 🏯 료칸</div>
-<h3>🏯 료칸 추천 TOP 3+</h3>
-<div class="item"><b>🥇 히노하루 료칸 (Hinoharu Ryokan)</b> <span class="tag">전통 화실</span><span class="tag">관광 중심</span><br>유노츠보 거리 바로 옆이라 관광 동선이 뛰어나며 순수 일본식 료칸 분위기를 느끼기 좋음.<br><a class="link" href="https://www.hinoharu.jp/english/" target="_blank">공식 사이트</a></div>
-<div class="item"><b>🥈 유후인 바이엔 (Yufuin Baien)</b> <span class="tag">넓은 정원</span><span class="tag">가족탕</span><br>넓은 정원과 가족 전용 노천탕이 강점. 자연 속에서 쉬는 료칸 경험.<br><a class="link" href="https://www.yufuin-baien.com/en/" target="_blank">공식 사이트</a></div>
-<div class="item"><b>🥉 무소엔 (Musoen)</b> <span class="tag">노천온천</span><span class="tag">전통</span><br>유후다케 전망과 넓은 노천탕으로 유명한 전통 료칸 후보.<br><a class="link" href="https://www.musoen.co.jp/" target="_blank">공식 사이트</a></div>
-<div class="item"><b>④ 료테이 타노쿠라</b> <span class="tag">고급</span><span class="tag">정통 료칸</span><br>예산보다 일본 전통 료칸 경험과 식사를 중시한다면 검토할 만한 상위 후보.<br><a class="link" href="https://www.tanokura.com/" target="_blank">공식 사이트</a></div>
-<h3>🍴 식사 리스트</h3>
-<div class="meal"><b>☀️ 아침</b> — 하카타 호텔 조식 후 체크아웃 → 열차 이동이 가장 편안.</div>
-<div class="meal"><b>🌤️ 점심</b> — ① 유후인역 주변 식사 ② 유노츠보 거리에서 아이와 간식형 점심. 료칸 석식을 고려해 과식하지 않는 것을 추천.<br><a class="link" href="https://www.google.com/maps/search/?api=1&query=restaurants+near+Yufuin+Station+Yunotsubo+Kaido" target="_blank">📍 DAY 2 점심 리스트 지도</a></div>
-<div class="meal"><b>🌙 저녁</b> — <b>료칸 가이세키 석식 강력 추천.</b> 예약 시 반드시 석식·조식 포함 플랜 확인.</div>
-<a class="link" href="https://www.jrkyushu.co.jp/english/train_reservation/" target="_blank">🎟️ JR 예약</a><a class="link" href="https://www.jrkyushu.co.jp/english/train/yufuin_no_mori.html" target="_blank">🚆 유후인노모리</a>
-</details>
+<section class="card">
+<h2>🧭 여행 계획</h2>
+<div class="tabs">
+<button class="tab active" data-plan="planA">Plan A · 현재 추천</button>
+<button class="tab" data-plan="planB">Plan B · 여유로운 일정</button>
+<button class="tab" data-plan="planC">Plan C · 아내 계획</button>
+</div>
 
-<details><summary>DAY 3 · 10/7 (수) 🦁 사파리 → ♨️ 벳푸</summary><div class="route">🏯 유후인 료칸 → 🚌 → 🦁 아프리칸 사파리 → 🚌 → ♨️ 벳푸 숙소</div>
-<h3>🏨 벳푸 숙소 추천 TOP 3+</h3>
-<div class="item"><b>🥇 하나벳푸 (Hanabeppu)</b> <span class="tag">다다미</span><span class="tag">가족</span><span class="tag">역 접근</span><br>일본식 분위기와 벳푸역 접근성의 균형. 5살 아이와 편하게 쉬기 좋은 후보.<br><a class="link" href="https://www.hanabeppu.jp/en/" target="_blank">공식 사이트</a></div>
-<div class="item"><b>🥈 KAMENOI HOTEL Beppu</b> <span class="tag">패밀리룸</span><span class="tag">온천</span><br>3인 가족 객실 선택지가 비교적 명확해 가족 숙박에 실용적.<br><a class="link" href="https://kamenoi-hotels.com/en/beppu/" target="_blank">공식 사이트</a></div>
-<div class="item"><b>🥉 Suginoi Hotel</b> <span class="tag">대형 리조트</span><span class="tag">아이 체험</span><br>전통 료칸보다는 아이가 즐길 거리와 대형 온천 리조트 경험을 원할 때 강력 후보.<br><a class="link" href="https://www.suginoi-hotel.com/" target="_blank">공식 사이트</a></div>
-<div class="item"><b>④ AMANE RESORT SEIKAI</b> <span class="tag">바다</span><span class="tag">고급</span><br>가격 부담보다 특별한 숙소 경험을 원할 때 검토할 고급 온천 리조트.<br><a class="link" href="https://www.seikai.co.jp/en/" target="_blank">공식 사이트</a></div>
-<h3>🍴 식사 리스트</h3>
-<div class="meal"><b>☀️ 아침</b> — 유후인 료칸 조식. 료칸 경험의 일부이므로 조식 포함 플랜 추천.</div>
-<div class="meal"><b>🌤️ 점심</b> — 사파리 체류 시간을 우선. 사파리 내/주변에서 간단히 먹는 것을 추천.<br><a class="link" href="https://www.google.com/maps/search/?api=1&query=restaurants+near+Kyushu+Natural+Zoo+African+Safari" target="_blank">📍 사파리 주변 식당 리스트</a></div>
-<div class="meal"><b>🌙 저녁</b> — 벳푸 숙소 체크인 후 ① 숙소 석식 ② 벳푸역 주변 식사. 이동 피로를 고려하면 숙소 석식이 가장 편함.<br><a class="link" href="https://www.google.com/maps/search/?api=1&query=restaurants+near+Beppu+Station+Oita" target="_blank">📍 벳푸역 주변 저녁 리스트</a></div>
-<a class="link" href="https://africansafari.co.jp/" target="_blank">🦁 사파리 공식</a><a class="link" href="https://www.kamenoibus.com/" target="_blank">🚌 버스</a>
-</details>
+<div id="planA" class="plan active">
+<div class="planhead"><b>Plan A · 현재 기본안</b><p class="small">아이 체험 + 료칸 + 사파리 + 벳푸를 모두 넣고, 귀국 전날 후쿠오카로 돌아오는 균형형 일정.</p><div class="route"><span>후쿠오카</span>→<span>유후인</span>→<span>사파리</span>→<span>벳푸</span>→<span>후쿠오카</span></div></div>
 
-<details><summary>DAY 4 · 10/8 (목) 🐠 우미타마고 → 🚆 후쿠오카</summary><div class="route">♨️ 벳푸 숙소 → 🚌/🚕 → 🐠 우미타마고 → 🍽️ 점심 → 🚆 벳푸역 → 🚆 하카타역 → 🏨 후쿠오카 숙소</div>
-<h3>🏨 후쿠오카 숙소 추천 TOP 3+</h3>
-<div class="item"><b>🥇 Mitsui Garden Hotel Fukuoka Gion</b> <span class="tag">대욕장</span><span class="tag">하카타</span><br>귀국 전날 하카타 접근성과 호텔 만족도의 균형.<br><a class="link" href="https://www.gardenhotels.co.jp/fukuoka-gion/eng/" target="_blank">공식 사이트</a></div>
-<div class="item"><b>🥈 Hotel FORZA Hakata</b> <span class="tag">역 1분</span><span class="tag">공항 이동</span><br>다음날 공항 이동까지 생각하면 가장 실용적인 선택.<br><a class="link" href="https://www.hotelforza.jp/hakata/en/" target="_blank">공식 사이트</a></div>
-<div class="item"><b>🥉 Hotel Nikko Fukuoka</b> <span class="tag">고급</span><span class="tag">역세권</span><br>마지막 밤을 조금 더 편안하게 보내고 싶을 때.<br><a class="link" href="https://www.hotelnikko-fukuoka.com/" target="_blank">공식 사이트</a></div>
-<h3>🍴 식사 리스트</h3>
-<div class="meal"><b>☀️ 아침</b> — 벳푸 숙소 조식 후 체크아웃.</div>
-<div class="meal"><b>🌤️ 점심</b> — 우미타마고 관람 후 수족관/주변에서 식사 → 벳푸역 이동.<br><a class="link" href="https://www.google.com/maps/search/?api=1&query=restaurants+near+Umitamago+Beppu" target="_blank">📍 우미타마고 주변 점심 리스트</a></div>
-<div class="meal"><b>🌙 저녁</b> — 하카타 도착 후 ① 하카타역 ② 숙소 주변. 마지막 쇼핑과 함께 이동거리 최소화.<br><a class="link" href="https://www.google.com/maps/search/?api=1&query=family+restaurants+Hakata+Station+Fukuoka" target="_blank">📍 DAY 4 저녁 리스트</a></div>
-<a class="link" href="https://www.umitamago.jp/" target="_blank">🐠 우미타마고 공식</a><a class="link" href="https://www.jrkyushu.co.jp/english/train_reservation/" target="_blank">🎟️ JR 예약</a>
-</details>
+<details class="day" open><summary>DAY 1 · 10/5 월 — 후쿠오카 도착</summary><div class="inside"><div class="timeline">
+<p><span class="time">15:35</span> 인천 출발</p><p><span class="time">17:00</span> 후쿠오카 도착</p><p><span class="time">18:30 전후</span> 하카타 이동·체크인</p><p>저녁: 하카타역 주변 식사 후 휴식</p>
+</div><div class="note">첫날은 컨디션 회복 우선. 다음날 유후인 이동을 위해 하카타역 접근성 좋은 숙소 추천.</div></div></details>
 
-<details><summary>DAY 5 · 10/9 (금) 🛍️ 후쿠오카 → 🇰🇷 귀국</summary><div class="route">🏨 후쿠오카 숙소 → 🛍️ 하카타/텐진 → 🍽️ 점심 → 🛬 후쿠오카 공항 → ✈️ 18:00 출발</div>
-<h3>🍴 식사 리스트</h3>
-<div class="meal"><b>☀️ 아침</b> — 호텔 조식 또는 하카타역 주변 가벼운 아침.</div>
-<div class="meal"><b>🌤️ 점심</b> — 귀국일에는 하카타역에서 점심 + 쇼핑을 묶는 것이 가장 효율적.<br><a class="link" href="https://www.google.com/maps/search/?api=1&query=restaurants+Hakata+Station+Fukuoka" target="_blank">📍 DAY 5 식당 리스트 지도</a></div>
-<div class="meal"><b>🌙 저녁</b> — 18:00 출발이므로 일본에서 별도 저녁 일정 없음. 공항에서 간단한 간식 가능.</div>
-<a class="link" href="https://www.fukuoka-airport.jp/en/access/" target="_blank">✈️ 공항 교통</a>
-</details>
+<details class="day"><summary>DAY 2 · 10/6 화 — 유후인 · 료칸</summary><div class="inside"><div class="timeline">
+<p>아침: 호텔 조식 → 하카타역</p><p>오전: 유후인노모리 탑승</p><p>점심: 유후인 도착 후 가벼운 식사</p><p>오후: 유노츠보 거리 · 긴린코 산책</p><p>16시 전후: 료칸 체크인 · 온천</p><p>저녁: 가이세키</p>
+</div><div class="grid"><div class="mini"><h3>Hinoharu Ryokan</h3><p>전통 일본식 분위기와 위치 균형이 좋아 1순위.</p></div><div class="mini"><h3>Yufuin Baien</h3><p>정원과 자연, 가족 온천 후보.</p></div><div class="mini"><h3>Ryotei Tanokura</h3><p>프리미엄 정통 료칸 후보.</p></div></div></div></details>
 
-<section class="card"><h2>📌 예약 체크리스트</h2>☐ 항공권 비용 입력<br>☐ 후쿠오카 숙소 2박<br>☐ 유후인 료칸 1박 (석식/조식·아이 숙박 확인)<br>☐ 벳푸 숙소 1박<br>☐ 하카타 → 유후인 열차<br>☐ 아프리칸 사파리 / 정글버스<br>☐ 유후인 → 사파리 → 벳푸 실제 교통편<br>☐ 벳푸 → 하카타 JR</section>
-</div></body></html>
+<details class="day"><summary>DAY 3 · 10/7 수 — 사파리 → 벳푸</summary><div class="inside"><div class="timeline">
+<p>아침: 료칸 조식·체크아웃</p><p>오전: 유후인 → 큐슈 아프리칸 사파리</p><p>낮: 사파리 · 정글버스</p><p>오후: 사파리 → 벳푸</p><p>저녁: 벳푸 체크인 · 온천</p>
+</div><div class="note">핵심 확인 구간: 유후인 → 사파리 → 벳푸. 버스가 불편하면 렌터카 대안 검토.</div></div></details>
+
+<details class="day"><summary>DAY 4 · 10/8 목 — 우미타마고 → 후쿠오카</summary><div class="inside"><div class="timeline">
+<p>아침: 벳푸 호텔 조식·체크아웃</p><p>오전: 우미타마고</p><p>점심: 수족관/벳푸 인근</p><p>오후: 벳푸 → 하카타</p><p>저녁: 후쿠오카 체크인 · 쇼핑/맛집</p>
+</div></div></details>
+
+<details class="day"><summary>DAY 5 · 10/9 금 — 후쿠오카 · 귀국</summary><div class="inside"><div class="timeline">
+<p>아침: 조식·체크아웃</p><p>오전: 하카타/텐진 쇼핑</p><p>점심: 마지막 일본 식사</p><p>15시 전후: 공항 이동 권장</p><p><span class="time">18:00</span> 후쿠오카 출발 → <span class="time">19:45</span> 인천 도착</p>
+</div></div></details>
+</div>
+
+<div id="planB" class="plan">
+<div class="planhead"><b>Plan B · 여유로운 일정</b><p class="small">아이 컨디션을 우선해 이동과 관광지 수를 줄이는 버전.</p><div class="route"><span>후쿠오카</span>→<span>유후인 2박</span>→<span>벳푸/사파리</span>→<span>후쿠오카</span></div></div>
+<div class="mini"><h3>예시 구성</h3><p><b>DAY 1</b> 후쿠오카 도착</p><p><b>DAY 2</b> 유후인 이동 · 관광 · 료칸</p><p><b>DAY 3</b> 유후인에서 느긋한 오전 → 사파리 또는 유후인 2박</p><p><b>DAY 4</b> 벳푸/우미타마고 중 1곳 → 후쿠오카</p><p><b>DAY 5</b> 후쿠오카 여유 일정 → 귀국</p></div>
+</div>
+
+<div id="planC" class="plan">
+<div class="planhead"><b>Plan C · 아내가 계획하는 여행</b><p class="small">아내분의 가고 싶은 장소·숙소·맛집을 Plan A와 비교하기 위한 별도 공간.</p></div>
+<div class="placeholder"><b>✍️ 아직 비어 있어요</b><br><br>예: 후쿠오카 중심 / 유후인 2박 / 쇼핑 비중 확대 / 키즈 관광지 추가</div>
+</div>
+</section>
+
+<section class="card">
+<h2>✅ 여행 가기 전 체크리스트</h2>
+<div class="progress"><div id="bar"></div></div><p id="progressText" class="small">0 / 0 완료</p>
+<div class="grid">
+<div class="checkgroup"><h3>🏨 숙소 예약</h3>
+<label class="check"><input type="checkbox"><span>10/5 후쿠오카 숙소 예약</span></label>
+<label class="check"><input type="checkbox"><span>10/6 유후인 료칸 예약</span></label>
+<label class="check"><input type="checkbox"><span>료칸 석식·조식 포함 확인</span></label>
+<label class="check"><input type="checkbox"><span>5살 아이 요금·침구·식사 조건 확인</span></label>
+<label class="check"><input type="checkbox"><span>가족탕/개인탕 여부 확인</span></label>
+<label class="check"><input type="checkbox"><span>10/7 벳푸 숙소 예약</span></label>
+<label class="check"><input type="checkbox"><span>10/8 후쿠오카 숙소 예약</span></label></div>
+
+<div class="checkgroup"><h3>🚆 이동수단 · 입장</h3>
+<label class="check"><input type="checkbox"><span>왕복 항공권 티켓팅</span></label>
+<label class="check"><input type="checkbox"><span>항공 좌석 지정</span></label>
+<label class="check"><input type="checkbox"><span>하카타 → 유후인노모리 예약</span></label>
+<label class="check"><input type="checkbox"><span>유후인 → 사파리 시간표 확인</span></label>
+<label class="check"><input type="checkbox"><span>아프리칸 사파리 운영일 확인</span></label>
+<label class="check"><input type="checkbox"><span>정글버스 이용 방법 확인</span></label>
+<label class="check"><input type="checkbox"><span>사파리 → 벳푸 교통 확인</span></label>
+<label class="check"><input type="checkbox"><span>벳푸 → 하카타 교통 확인</span></label></div>
+
+<div class="checkgroup"><h3>🍣 맛집 · 식사</h3>
+<label class="check"><input type="checkbox"><span>후쿠오카 첫날 저녁 후보 확정</span></label>
+<label class="check"><input type="checkbox"><span>유후인 점심 후보 확정</span></label>
+<label class="check"><input type="checkbox"><span>료칸 가이세키 시간 확인</span></label>
+<label class="check"><input type="checkbox"><span>벳푸 저녁 예약 필요 여부 확인</span></label>
+<label class="check"><input type="checkbox"><span>후쿠오카 마지막 저녁 후보 확정</span></label>
+<label class="check"><input type="checkbox"><span>아이 동반 가능 여부 확인</span></label>
+<label class="check"><input type="checkbox"><span>영업시간·휴무일 확인</span></label></div>
+
+<div class="checkgroup"><h3>🎒 준비물</h3>
+<label class="check"><input type="checkbox"><span>가족 여권 유효기간 확인</span></label>
+<label class="check"><input type="checkbox"><span>항공·숙소 예약 내역 저장</span></label>
+<label class="check"><input type="checkbox"><span>여행자보험 검토</span></label>
+<label class="check"><input type="checkbox"><span>일본 eSIM/로밍 준비</span></label>
+<label class="check"><input type="checkbox"><span>신용카드 + 엔화 현금</span></label>
+<label class="check"><input type="checkbox"><span>아이 상비약·체온계</span></label>
+<label class="check"><input type="checkbox"><span>아이 여벌옷·겉옷</span></label>
+<label class="check"><input type="checkbox"><span>충전기·보조배터리</span></label>
+<label class="check"><input type="checkbox"><span>우산/우비</span></label></div>
+</div>
+<p class="small">체크 상태와 마지막으로 본 Plan 탭은 같은 브라우저에 저장됩니다.</p>
+</section>
+</div>
+
+<script>
+const tabs=[...document.querySelectorAll('.tab')], plans=[...document.querySelectorAll('.plan')];
+tabs.forEach(b=>b.onclick=()=>{tabs.forEach(x=>x.classList.remove('active'));plans.forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.plan).classList.add('active');localStorage.setItem('tripPlan',b.dataset.plan)});
+const sp=localStorage.getItem('tripPlan'); if(sp){const b=document.querySelector('[data-plan="'+sp+'"]'); if(b)b.click();}
+const boxes=[...document.querySelectorAll('.checkgroup input')];
+function update(){const n=boxes.filter(x=>x.checked).length;document.getElementById('progressText').textContent=n+' / '+boxes.length+' 완료';document.getElementById('bar').style.width=(n/boxes.length*100)+'%'}
+boxes.forEach((b,i)=>{const k='tripCheck'+i;b.checked=localStorage.getItem(k)==='1';b.onchange=()=>{localStorage.setItem(k,b.checked?'1':'0');update()}});update();
+</script>
+</body></html>
