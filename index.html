@@ -14,7 +14,12 @@ a{color:#7c5336;text-decoration:none;font-weight:750}button,input,select{font:in
 .authbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#f7f2eb;padding:12px;border-radius:14px;margin-bottom:12px}.authbtn,.addbtn{border:0;border-radius:12px;background:var(--accent);color:#fff;padding:10px 13px;font-weight:800}.logout{background:#73685e}
 .progress{height:10px;background:#eee6dc;border-radius:999px;overflow:hidden}.progress>div{height:100%;width:0;background:var(--green)}.check{display:flex;gap:9px;align-items:flex-start;padding:6px 0;line-height:1.4}.check input{width:19px;height:19px;accent-color:var(--green)}
 .itemrow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}.danger{background:#fff;border:1px solid #e4c4c4;color:#a84f4f;border-radius:10px;padding:5px 8px;font-size:12px}.addform{display:grid;grid-template-columns:150px 1fr auto;gap:8px;margin:12px 0}.addform input,.addform select{border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff}.status{font-size:13px;color:var(--muted)}.ok{color:#4e7858}.err{color:#a84f4f}
-table{width:100%;border-collapse:collapse}th,td{padding:9px 7px;border-bottom:1px solid var(--line);text-align:left;font-size:14px;vertical-align:top}.placeform{display:grid;grid-template-columns:130px 130px 130px 150px 150px 1fr 1fr auto;gap:8px;margin:12px 0}
+table{width:100%;border-collapse:collapse}th,td{padding:9px 7px;border-bottom:1px solid var(--line);text-align:left;font-size:14px;vertical-align:top}.placeform{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:8px;margin:12px 0;align-items:stretch}
+.placeform>*{min-width:0;width:100%}
+#placeType{grid-column:span 2}#placeAreaName{grid-column:span 2}
+#placeStartDate{grid-column:span 2}#placeEndDate{grid-column:span 2}
+#placeName{grid-column:span 4}#placeMapUrl{grid-column:span 6}
+#mapSearchBtn{grid-column:span 3}.placeform .addbtn{grid-column:span 3}
 .placeform input,.placeform select{border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff}
 .placegroup{border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px;margin:12px 0}
 .placegroup h3{display:flex;align-items:center;gap:8px;margin-bottom:10px}
@@ -26,8 +31,11 @@ table{width:100%;border-collapse:collapse}th,td{padding:9px 7px;border-bottom:1p
 .byline{font-size:12px;color:var(--muted);margin-top:8px}
 .footerupdate{text-align:center;color:var(--muted);font-size:13px;padding:8px 4px 24px}
 .maphelper{border:1px solid var(--line);background:#fff;color:#7c5336;border-radius:11px;padding:10px 12px;font-weight:800}
-@media(max-width:780px){.placeform{grid-template-columns:1fr 1fr}.placeform .wide,.placeform button{grid-column:1/-1}}
-@media(max-width:650px){.addform{grid-template-columns:1fr}.hero,.card{padding:16px}.placeform{grid-template-columns:1fr}}
+@media(max-width:780px){.placeform{grid-template-columns:repeat(2,minmax(0,1fr))}
+#placeType,#placeAreaName,#placeStartDate,#placeEndDate{grid-column:span 1}
+#placeName,#placeMapUrl,#mapSearchBtn,.placeform .addbtn{grid-column:1/-1}}
+@media(max-width:650px){.addform{grid-template-columns:1fr}.hero,.card{padding:16px}.placeform{grid-template-columns:1fr}
+#placeType,#placeAreaName,#placeStartDate,#placeEndDate,#placeName,#placeMapUrl,#mapSearchBtn,.placeform .addbtn{grid-column:1}}
 </style></head><body><div class="wrap">
 <section class="hero"><h1>🇯🇵 우리 가족 첫 일본여행 ♥</h1><p class="muted">후쿠오카 · 유후인 · 벳푸 / 가족 3명 / 2026.10.05 ~ 10.09 예정</p><div class="chips"><span class="chip">👨‍👩‍👦 5살 아이</span><span class="chip">♨️ 전통 료칸</span><span class="chip">🦁 아프리칸 사파리</span><span class="chip">🚆 대중교통 우선</span><span class="chip">☁️ 체크리스트 실시간 공유</span></div></section>
 
@@ -75,9 +83,9 @@ table{width:100%;border-collapse:collapse}th,td{padding:9px 7px;border-bottom:1p
 
 <section class="card">
 <h2>📍 우리 가족 추가 후보</h2>
-<p class="small">숙소·식당뿐 아니라 관광/체험, 카페/디저트, 쇼핑, 교통 등으로 나눠 추가할 수 있어요. 날짜는 '하루' 또는 '범위'로 선택할 수 있고, 범위는 A ~ B 형식으로 표시됩니다.</p>
+<p class="small">숙소·식당뿐 아니라 관광/체험, 카페/디저트, 쇼핑, 교통 등으로 나눠 추가할 수 있어요. 첫 날짜만 지정하면 하루로, 종료일까지 지정하면 자동으로 A ~ B 범위로 표시됩니다.</p>
 <div id="placeArea" style="display:none">
-<form id="placeForm" class="placeform">
+<div class="small" style="margin:8px 0">📅 첫 날짜는 필수 · 종료일은 범위가 필요할 때만 선택</div><form id="placeForm" class="placeform">
 <select id="placeType">
 <option value="숙소">🏨 숙소</option>
 <option value="식당">🍽️ 식당</option>
@@ -88,12 +96,8 @@ table{width:100%;border-collapse:collapse}th,td{padding:9px 7px;border-bottom:1p
 <option value="기타">📌 기타</option>
 </select>
 <select id="placeAreaName"><option>후쿠오카</option><option>유후인</option><option>벳푸</option><option>기타</option></select>
-<select id="dateMode">
-<option value="single">📅 하루</option>
-<option value="range">🗓️ 범위</option>
-</select>
-<input id="placeStartDate" type="date" min="2026-10-05" max="2026-10-09" value="2026-10-05">
-<input id="placeEndDate" type="date" min="2026-10-05" max="2026-10-09" value="2026-10-05" style="display:none">
+<input id="placeStartDate" type="date" min="2026-10-05" max="2026-10-09" value="2026-10-05" title="날짜">
+<input id="placeEndDate" type="date" min="2026-10-05" max="2026-10-09" title="종료일 (선택)">
 <input id="placeName" class="wide" placeholder="장소 이름 (예: ○○ 료칸)" maxlength="80" required>
 <input id="placeMapUrl" class="wide" placeholder="Google Maps 공유 링크 (선택)">
 <button id="mapSearchBtn" class="maphelper" type="button">Google Maps에서 검색</button>
@@ -120,7 +124,7 @@ import {getDatabase,ref,onValue,set,update,push,remove,get,serverTimestamp} from
 const firebaseConfig={apiKey:"AIzaSyDJdFnPkqUIJ_RSZbNlZFQ4kbO9I0dJ15E",authDomain:"family-trip-427f4.firebaseapp.com",databaseURL:"https://family-trip-427f4-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"family-trip-427f4",storageBucket:"family-trip-427f4.firebasestorage.app",messagingSenderId:"100902384590",appId:"1:100902384590:web:0d5b7d79a89434613c319f"};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getDatabase(app),provider=new GoogleAuthProvider();
 const loginBtn=document.getElementById('loginBtn'),logoutBtn=document.getElementById('logoutBtn'),authTitle=document.getElementById('authTitle'),authStatus=document.getElementById('authStatus'),checkArea=document.getElementById('checkArea'),checklist=document.getElementById('checklist'),addForm=document.getElementById('addForm'),newItem=document.getElementById('newItem'),category=document.getElementById('category');
-const placeArea=document.getElementById('placeArea'),placeLoginHint=document.getElementById('placeLoginHint'),placeForm=document.getElementById('placeForm'),placeType=document.getElementById('placeType'),placeAreaName=document.getElementById('placeAreaName'),dateMode=document.getElementById('dateMode'),placeStartDate=document.getElementById('placeStartDate'),placeEndDate=document.getElementById('placeEndDate'),placeName=document.getElementById('placeName'),placeMapUrl=document.getElementById('placeMapUrl'),mapSearchBtn=document.getElementById('mapSearchBtn'),placesList=document.getElementById('placesList'),lastUpdate=document.getElementById('lastUpdate');
+const placeArea=document.getElementById('placeArea'),placeLoginHint=document.getElementById('placeLoginHint'),placeForm=document.getElementById('placeForm'),placeType=document.getElementById('placeType'),placeAreaName=document.getElementById('placeAreaName'),placeStartDate=document.getElementById('placeStartDate'),placeEndDate=document.getElementById('placeEndDate'),placeName=document.getElementById('placeName'),placeMapUrl=document.getElementById('placeMapUrl'),mapSearchBtn=document.getElementById('mapSearchBtn'),placesList=document.getElementById('placesList'),lastUpdate=document.getElementById('lastUpdate');
 let currentUser=null;
 loginBtn.onclick=async()=>{try{await signInWithPopup(auth,provider)}catch(e){if(e.code==='auth/popup-blocked'||e.code==='auth/cancelled-popup-request')await signInWithRedirect(auth,provider);else{authStatus.textContent='로그인 오류: '+e.message;authStatus.className='status err'}}};logoutBtn.onclick=()=>signOut(auth);
 const defaults={a1:{category:"숙소 예약",text:"10/5 후쿠오카 숙소 예약",checked:false},a2:{category:"숙소 예약",text:"10/6 유후인 료칸 예약",checked:false},a3:{category:"숙소 예약",text:"료칸 석식·조식 / 아이 요금 / 가족탕 확인",checked:false},a4:{category:"숙소 예약",text:"10/7 벳푸 숙소 예약",checked:false},a5:{category:"숙소 예약",text:"10/8 후쿠오카 숙소 예약",checked:false},b1:{category:"이동수단 · 입장",text:"왕복 항공권 티켓팅",checked:false},b2:{category:"이동수단 · 입장",text:"항공 좌석 지정",checked:false},b3:{category:"이동수단 · 입장",text:"하카타 → 유후인노모리 예약",checked:false},b4:{category:"이동수단 · 입장",text:"유후인 → 사파리 → 벳푸 시간표 확인",checked:false},b5:{category:"이동수단 · 입장",text:"아프리칸 사파리 / 정글버스 확인",checked:false},c1:{category:"맛집 · 식사",text:"후쿠오카 첫날 저녁 후보 확정",checked:false},c2:{category:"맛집 · 식사",text:"유후인 점심 후보 확정",checked:false},c3:{category:"맛집 · 식사",text:"료칸 가이세키 시간 확인",checked:false},c4:{category:"맛집 · 식사",text:"벳푸 저녁 후보 확정",checked:false},d1:{category:"준비물",text:"가족 여권 유효기간 확인",checked:false},d2:{category:"준비물",text:"여행자보험 검토",checked:false},d3:{category:"준비물",text:"일본 eSIM / 로밍 준비",checked:false},d4:{category:"준비물",text:"신용카드 + 엔화 현금",checked:false},d5:{category:"준비물",text:"아이 상비약 · 체온계",checked:false},d6:{category:"준비물",text:"충전기 · 보조배터리 · 우산/우비",checked:false}};
@@ -210,20 +214,13 @@ addForm.onsubmit=async e=>{
 function mapSearchUrl(name,area){
   return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent((name||'')+' '+(area||''));
 }
-dateMode.onchange=()=>{
-  const isRange=dateMode.value==='range';
-  placeEndDate.style.display=isRange?'block':'none';
-  if(isRange && !placeEndDate.value) placeEndDate.value=placeStartDate.value;
-};
 placeStartDate.onchange=()=>{
-  if(dateMode.value==='range' && (!placeEndDate.value || placeEndDate.value<placeStartDate.value)){
-    placeEndDate.value=placeStartDate.value;
-  }
+  if(placeEndDate.value && placeEndDate.value<placeStartDate.value) placeEndDate.value='';
 };
 placeEndDate.onchange=()=>{
   if(placeEndDate.value && placeEndDate.value<placeStartDate.value){
     alert('종료일은 시작일보다 빠를 수 없습니다.');
-    placeEndDate.value=placeStartDate.value;
+    placeEndDate.value='';
   }
 };
 
@@ -238,10 +235,10 @@ placeForm.onsubmit=async e=>{
   e.preventDefault();
   const name=placeName.value.trim(); if(!name)return;
   const area=placeAreaName.value, type=placeType.value;
-  const mode=dateMode.value;
   const startDate=placeStartDate.value||'';
-  const endDate=mode==='range' ? (placeEndDate.value||startDate) : '';
-  if(mode==='range' && endDate<startDate){
+  const endDate=placeEndDate.value||'';
+  const mode=(endDate && endDate!==startDate)?'range':'single';
+  if(endDate && endDate<startDate){
     alert('종료일은 시작일보다 빠를 수 없습니다.');
     return;
   }
