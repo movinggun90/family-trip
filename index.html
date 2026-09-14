@@ -14,8 +14,12 @@ a{color:#7c5336;text-decoration:none;font-weight:750}button,input,select{font:in
 .authbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#f7f2eb;padding:12px;border-radius:14px;margin-bottom:12px}.authbtn,.addbtn{border:0;border-radius:12px;background:var(--accent);color:#fff;padding:10px 13px;font-weight:800}.logout{background:#73685e}
 .progress{height:10px;background:#eee6dc;border-radius:999px;overflow:hidden}.progress>div{height:100%;width:0;background:var(--green)}.check{display:flex;gap:9px;align-items:flex-start;padding:6px 0;line-height:1.4}.check input{width:19px;height:19px;accent-color:var(--green)}
 .itemrow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}.danger{background:#fff;border:1px solid #e4c4c4;color:#a84f4f;border-radius:10px;padding:5px 8px;font-size:12px}.addform{display:grid;grid-template-columns:150px 1fr auto;gap:8px;margin:12px 0}.addform input,.addform select{border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff}.status{font-size:13px;color:var(--muted)}.ok{color:#4e7858}.err{color:#a84f4f}
-table{width:100%;border-collapse:collapse}th,td{padding:9px 7px;border-bottom:1px solid var(--line);text-align:left;font-size:14px;vertical-align:top}.placeform{display:grid;grid-template-columns:120px 120px 1fr 1fr auto;gap:8px;margin:12px 0}
+table{width:100%;border-collapse:collapse}th,td{padding:9px 7px;border-bottom:1px solid var(--line);text-align:left;font-size:14px;vertical-align:top}.placeform{display:grid;grid-template-columns:130px 130px 130px 150px 150px 1fr 1fr auto;gap:8px;margin:12px 0}
 .placeform input,.placeform select{border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff}
+.placegroup{border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px;margin:12px 0}
+.placegroup h3{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.placegroup .count{font-size:12px;color:var(--muted);font-weight:700}
+.placegroup-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:10px}
 .placecard{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
 .placehead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
 .badge{display:inline-block;background:#f3e9df;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:800;margin-right:5px}
@@ -70,18 +74,32 @@ table{width:100%;border-collapse:collapse}th,td{padding:9px 7px;border-bottom:1p
 </section>
 
 <section class="card">
-<h2>📍 우리 가족 추가 숙소 · 식당 후보</h2>
-<p class="small">둘 중 누구든 후보를 추가하면 바로 실시간 공유됩니다. Google Maps 링크를 붙여 넣으면 정확한 장소로 열리고, 비워두면 이름+지역으로 자동 검색합니다.</p>
+<h2>📍 우리 가족 추가 후보</h2>
+<p class="small">숙소·식당뿐 아니라 관광/체험, 카페/디저트, 쇼핑, 교통 등으로 나눠 추가할 수 있어요. 날짜는 '하루' 또는 '범위'로 선택할 수 있고, 범위는 A ~ B 형식으로 표시됩니다.</p>
 <div id="placeArea" style="display:none">
 <form id="placeForm" class="placeform">
-<select id="placeType"><option value="숙소">🏨 숙소</option><option value="식당">🍽️ 식당</option></select>
+<select id="placeType">
+<option value="숙소">🏨 숙소</option>
+<option value="식당">🍽️ 식당</option>
+<option value="관광/체험">🎡 관광/체험</option>
+<option value="카페/디저트">☕ 카페/디저트</option>
+<option value="쇼핑">🛍️ 쇼핑</option>
+<option value="교통">🚆 교통</option>
+<option value="기타">📌 기타</option>
+</select>
 <select id="placeAreaName"><option>후쿠오카</option><option>유후인</option><option>벳푸</option><option>기타</option></select>
+<select id="dateMode">
+<option value="single">📅 하루</option>
+<option value="range">🗓️ 범위</option>
+</select>
+<input id="placeStartDate" type="date" min="2026-10-05" max="2026-10-09" value="2026-10-05">
+<input id="placeEndDate" type="date" min="2026-10-05" max="2026-10-09" value="2026-10-05" style="display:none">
 <input id="placeName" class="wide" placeholder="장소 이름 (예: ○○ 료칸)" maxlength="80" required>
 <input id="placeMapUrl" class="wide" placeholder="Google Maps 공유 링크 (선택)">
 <button id="mapSearchBtn" class="maphelper" type="button">Google Maps에서 검색</button>
 <button class="addbtn" type="submit">+ 후보 추가</button>
 </form>
-<div id="placesList" class="grid"></div>
+<div id="placesList"></div>
 </div>
 <div id="placeLoginHint" class="small">Google 로그인 후 후보를 추가할 수 있습니다.</div>
 </section>
@@ -102,7 +120,7 @@ import {getDatabase,ref,onValue,set,update,push,remove,get,serverTimestamp} from
 const firebaseConfig={apiKey:"AIzaSyDJdFnPkqUIJ_RSZbNlZFQ4kbO9I0dJ15E",authDomain:"family-trip-427f4.firebaseapp.com",databaseURL:"https://family-trip-427f4-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"family-trip-427f4",storageBucket:"family-trip-427f4.firebasestorage.app",messagingSenderId:"100902384590",appId:"1:100902384590:web:0d5b7d79a89434613c319f"};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getDatabase(app),provider=new GoogleAuthProvider();
 const loginBtn=document.getElementById('loginBtn'),logoutBtn=document.getElementById('logoutBtn'),authTitle=document.getElementById('authTitle'),authStatus=document.getElementById('authStatus'),checkArea=document.getElementById('checkArea'),checklist=document.getElementById('checklist'),addForm=document.getElementById('addForm'),newItem=document.getElementById('newItem'),category=document.getElementById('category');
-const placeArea=document.getElementById('placeArea'),placeLoginHint=document.getElementById('placeLoginHint'),placeForm=document.getElementById('placeForm'),placeType=document.getElementById('placeType'),placeAreaName=document.getElementById('placeAreaName'),placeName=document.getElementById('placeName'),placeMapUrl=document.getElementById('placeMapUrl'),mapSearchBtn=document.getElementById('mapSearchBtn'),placesList=document.getElementById('placesList'),lastUpdate=document.getElementById('lastUpdate');
+const placeArea=document.getElementById('placeArea'),placeLoginHint=document.getElementById('placeLoginHint'),placeForm=document.getElementById('placeForm'),placeType=document.getElementById('placeType'),placeAreaName=document.getElementById('placeAreaName'),dateMode=document.getElementById('dateMode'),placeStartDate=document.getElementById('placeStartDate'),placeEndDate=document.getElementById('placeEndDate'),placeName=document.getElementById('placeName'),placeMapUrl=document.getElementById('placeMapUrl'),mapSearchBtn=document.getElementById('mapSearchBtn'),placesList=document.getElementById('placesList'),lastUpdate=document.getElementById('lastUpdate');
 let currentUser=null;
 loginBtn.onclick=async()=>{try{await signInWithPopup(auth,provider)}catch(e){if(e.code==='auth/popup-blocked'||e.code==='auth/cancelled-popup-request')await signInWithRedirect(auth,provider);else{authStatus.textContent='로그인 오류: '+e.message;authStatus.className='status err'}}};logoutBtn.onclick=()=>signOut(auth);
 const defaults={a1:{category:"숙소 예약",text:"10/5 후쿠오카 숙소 예약",checked:false},a2:{category:"숙소 예약",text:"10/6 유후인 료칸 예약",checked:false},a3:{category:"숙소 예약",text:"료칸 석식·조식 / 아이 요금 / 가족탕 확인",checked:false},a4:{category:"숙소 예약",text:"10/7 벳푸 숙소 예약",checked:false},a5:{category:"숙소 예약",text:"10/8 후쿠오카 숙소 예약",checked:false},b1:{category:"이동수단 · 입장",text:"왕복 항공권 티켓팅",checked:false},b2:{category:"이동수단 · 입장",text:"항공 좌석 지정",checked:false},b3:{category:"이동수단 · 입장",text:"하카타 → 유후인노모리 예약",checked:false},b4:{category:"이동수단 · 입장",text:"유후인 → 사파리 → 벳푸 시간표 확인",checked:false},b5:{category:"이동수단 · 입장",text:"아프리칸 사파리 / 정글버스 확인",checked:false},c1:{category:"맛집 · 식사",text:"후쿠오카 첫날 저녁 후보 확정",checked:false},c2:{category:"맛집 · 식사",text:"유후인 점심 후보 확정",checked:false},c3:{category:"맛집 · 식사",text:"료칸 가이세키 시간 확인",checked:false},c4:{category:"맛집 · 식사",text:"벳푸 저녁 후보 확정",checked:false},d1:{category:"준비물",text:"가족 여권 유효기간 확인",checked:false},d2:{category:"준비물",text:"여행자보험 검토",checked:false},d3:{category:"준비물",text:"일본 eSIM / 로밍 준비",checked:false},d4:{category:"준비물",text:"신용카드 + 엔화 현금",checked:false},d5:{category:"준비물",text:"아이 상비약 · 체온계",checked:false},d6:{category:"준비물",text:"충전기 · 보조배터리 · 우산/우비",checked:false}};
@@ -192,6 +210,23 @@ addForm.onsubmit=async e=>{
 function mapSearchUrl(name,area){
   return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent((name||'')+' '+(area||''));
 }
+dateMode.onchange=()=>{
+  const isRange=dateMode.value==='range';
+  placeEndDate.style.display=isRange?'block':'none';
+  if(isRange && !placeEndDate.value) placeEndDate.value=placeStartDate.value;
+};
+placeStartDate.onchange=()=>{
+  if(dateMode.value==='range' && (!placeEndDate.value || placeEndDate.value<placeStartDate.value)){
+    placeEndDate.value=placeStartDate.value;
+  }
+};
+placeEndDate.onchange=()=>{
+  if(placeEndDate.value && placeEndDate.value<placeStartDate.value){
+    alert('종료일은 시작일보다 빠를 수 없습니다.');
+    placeEndDate.value=placeStartDate.value;
+  }
+};
+
 mapSearchBtn.onclick=()=>{
   const name=placeName.value.trim();
   const area=placeAreaName.value;
@@ -203,11 +238,18 @@ placeForm.onsubmit=async e=>{
   e.preventDefault();
   const name=placeName.value.trim(); if(!name)return;
   const area=placeAreaName.value, type=placeType.value;
+  const mode=dateMode.value;
+  const startDate=placeStartDate.value||'';
+  const endDate=mode==='range' ? (placeEndDate.value||startDate) : '';
+  if(mode==='range' && endDate<startDate){
+    alert('종료일은 시작일보다 빠를 수 없습니다.');
+    return;
+  }
   const raw=placeMapUrl.value.trim();
   const mapUrl=raw || mapSearchUrl(name,area);
   const p=push(ref(db,'places'));
   await set(p,{
-    type,area,name,mapUrl,
+    type,area,dateMode:mode,startDate,endDate,name,mapUrl,
     createdBy:currentUser?.displayName||'가족',
     createdByUid:currentUser?.uid||'',
     createdAt:serverTimestamp()
@@ -216,37 +258,145 @@ placeForm.onsubmit=async e=>{
   await markUpdate(type+' 후보 추가 · '+name);
 };
 
-function renderPlaces(data){
-  placesList.innerHTML='';
-  const entries=Object.entries(data).sort((a,b)=>(b[1].createdAt||0)-(a[1].createdAt||0));
-  if(!entries.length){
-    const empty=document.createElement('div'); empty.className='placeholder'; empty.textContent='아직 직접 추가한 후보가 없습니다.';
-    placesList.appendChild(empty); return;
-  }
-  entries.forEach(([id,item])=>{
-    const card=document.createElement('div'); card.className='placecard';
-    const head=document.createElement('div'); head.className='placehead';
-    const left=document.createElement('div');
-    const badges=document.createElement('div');
-    const b1=document.createElement('span'); b1.className='badge'; b1.textContent=(item.type==='숙소'?'🏨 ':'🍽️ ')+(item.type||'후보');
-    const b2=document.createElement('span'); b2.className='badge'; b2.textContent=item.area||'기타';
-    badges.append(b1,b2);
-    const title=document.createElement('h3'); title.textContent=item.name||'이름 없음'; title.style.marginTop='8px';
-    left.append(badges,title);
-
-    const del=document.createElement('button'); del.className='danger'; del.textContent='삭제';
-    del.onclick=async()=>{if(confirm('이 후보를 삭제할까요?')){await remove(ref(db,'places/'+id));await markUpdate((item.type||'후보')+' 후보 삭제 · '+(item.name||''));}};
-    head.append(left,del); card.appendChild(head);
-
-    const links=document.createElement('div'); links.className='linkrow';
-    const map=document.createElement('a'); map.href=item.mapUrl||mapSearchUrl(item.name,item.area); map.target='_blank'; map.textContent='📍 Google Maps';
-    links.appendChild(map); card.appendChild(links);
-
-    const by=document.createElement('div'); by.className='byline';
-    const when=item.createdAt ? new Date(item.createdAt).toLocaleString('ko-KR') : '';
-    by.textContent='등록: '+(item.createdBy||'가족')+(when?' · '+when:'');
-    card.appendChild(by); placesList.appendChild(card);
-  });
+function typeIcon(type){
+  return type==='숙소'?'🏨':
+         type==='식당'?'🍽️':
+         type==='관광/체험'?'🎡':
+         type==='카페/디저트'?'☕':
+         type==='쇼핑'?'🛍️':
+         type==='교통'?'🚆':'📌';
 }
 
+function formatOneDate(dateStr){
+  if(!dateStr) return '';
+  const d=new Date(dateStr+'T00:00:00');
+  const weekdays=['일','월','화','수','목','금','토'];
+  return `${d.getMonth()+1}/${d.getDate()} ${weekdays[d.getDay()]}`;
+}
+
+function formatTripDate(item){
+  const legacyDate=item.date||'';
+  const start=item.startDate||legacyDate||'';
+  const mode=item.dateMode||'single';
+  const end=item.endDate||'';
+  if(!start) return '날짜 미정';
+  if(mode==='range' && end && end!==start){
+    return `${formatOneDate(start)} ~ ${formatOneDate(end)}`;
+  }
+  return formatOneDate(start);
+}
+
+function renderPlaces(data){
+  placesList.innerHTML='';
+
+  const entries=Object.entries(data);
+  if(!entries.length){
+    const empty=document.createElement('div');
+    empty.className='placeholder';
+    empty.textContent='아직 직접 추가한 후보가 없습니다.';
+    placesList.appendChild(empty);
+    return;
+  }
+
+  const categoryOrder=['숙소','식당','관광/체험','카페/디저트','쇼핑','교통','기타'];
+  const grouped={};
+  entries.forEach(([id,item])=>{
+    const type=item.type||'기타';
+    (grouped[type]??=[]).push([id,item]);
+  });
+
+  categoryOrder.forEach(type=>{
+    const items=grouped[type];
+    if(!items?.length) return;
+
+    items.sort((a,b)=>{
+      const da=a[1].startDate||a[1].date||'9999-12-31';
+      const db=b[1].startDate||b[1].date||'9999-12-31';
+      if(da!==db) return da.localeCompare(db);
+      return (b[1].createdAt||0)-(a[1].createdAt||0);
+    });
+
+    const group=document.createElement('section');
+    group.className='placegroup';
+
+    const heading=document.createElement('h3');
+    heading.innerHTML=`<span>${typeIcon(type)} ${type}</span> <span class="count">${items.length}곳</span>`;
+    group.appendChild(heading);
+
+    const list=document.createElement('div');
+    list.className='placegroup-list';
+
+    items.forEach(([id,item])=>{
+      const card=document.createElement('div');
+      card.className='placecard';
+
+      const head=document.createElement('div');
+      head.className='placehead';
+
+      const left=document.createElement('div');
+      const badges=document.createElement('div');
+
+      const bDate=document.createElement('span');
+      bDate.className='badge';
+      bDate.textContent='📅 '+formatTripDate(item);
+
+      const bArea=document.createElement('span');
+      bArea.className='badge';
+      bArea.textContent=item.area||'기타';
+
+      badges.append(bDate,bArea);
+
+      const title=document.createElement('h3');
+      title.textContent=item.name||'이름 없음';
+      title.style.marginTop='8px';
+
+      left.append(badges,title);
+
+      const del=document.createElement('button');
+      del.className='danger';
+      del.textContent='삭제';
+      del.onclick=async()=>{
+        if(confirm('이 후보를 삭제할까요?')){
+          await remove(ref(db,'places/'+id));
+          await markUpdate((item.type||'후보')+' 후보 삭제 · '+(item.name||''));
+        }
+      };
+
+      head.append(left,del);
+      card.appendChild(head);
+
+      const links=document.createElement('div');
+      links.className='linkrow';
+
+      const map=document.createElement('a');
+      map.href=item.mapUrl||mapSearchUrl(item.name,item.area);
+      map.target='_blank';
+      map.textContent='📍 Google Maps';
+      links.appendChild(map);
+
+      card.appendChild(links);
+
+      const by=document.createElement('div');
+      by.className='byline';
+      const when=item.createdAt ? new Date(item.createdAt).toLocaleString('ko-KR') : '';
+      by.textContent='등록: '+(item.createdBy||'가족')+(when?' · '+when:'');
+      card.appendChild(by);
+
+      list.appendChild(card);
+    });
+
+    group.appendChild(list);
+    placesList.appendChild(group);
+  });
+
+  // Any future custom category not in the fixed order still shows up.
+  Object.keys(grouped).filter(t=>!categoryOrder.includes(t)).forEach(type=>{
+    const group=document.createElement('section');
+    group.className='placegroup';
+    const heading=document.createElement('h3');
+    heading.textContent='📌 '+type;
+    group.appendChild(heading);
+    placesList.appendChild(group);
+  });
+}
 </script></body></html>
